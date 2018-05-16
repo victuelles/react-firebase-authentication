@@ -11,15 +11,15 @@ const SignInPage = ({history}) =>
     <SignUpLink />
 </div>
 
-
+const byPropKey =(propertyName,value)=>()=>({
+    [propertyName]:value,
+})
 const INITIAL_STATE= {
     email:'',
     password:'',
     error:null
 }
-const byPropKey =(propertyName,value)=>()=>({
-    [propertyName]:value,
-})
+
  
 class SignInForm extends Component {
     
@@ -31,6 +31,7 @@ class SignInForm extends Component {
     onSubmit=(event)=>{
         const {email,password}=this.state;
         const {history}=this.props
+
         auth.doSigInWithEmailAndPassword(email,password)
             .then(()=>{
                 this.setState(()=>({...INITIAL_STATE}))
@@ -55,7 +56,7 @@ class SignInForm extends Component {
                 <input value={email} 
                         onChange={event=>this.setState(byPropKey('email',event.target.value))}
                         type='text'
-                        placeholder='email'
+                        placeholder='Email address'
                  />
                  <input value={password} 
                         onChange={event=>this.setState(byPropKey('password',event.target.value))}

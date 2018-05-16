@@ -19,8 +19,9 @@ const NavigationAuth=()=>
 
 const NavigationNonAuth=()=>
   <ul>
-      <li><Link to={routes.SIGN_IN}> Sign In</Link></li>
       <li><Link to={routes.LANDING}> Landing</Link></li>
+      <li><Link to={routes.SIGN_IN}> Sign In</Link></li>
+
      
   </ul>
 
