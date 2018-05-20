@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import * as routes from '../constants/routes'
-import {auth} from '../firebase'
+import {auth,db} from '../firebase'
 
 const SignUpPage = ({history}) => 
     <div>
@@ -31,8 +31,17 @@ class SignUpForm extends Component {
         const {history}=this.props
         auth.doCreateUserWithEmailAndPassword(email,passwordOne)
             .then(authUser=>{
-                this.setState(()=>({...INITIAL_STATE}))
-                history.push(routes.HOME)
+                //create a user in your own  accessible FB database too
+                console.log('-- authUser=',authUser);
+
+                db.doCreateUser(authUser.user.uid,username,email)
+                .then(()=>{
+                    this.setState(()=>({...INITIAL_STATE}))
+                    history.push(routes.HOME)
+                })
+                .catch(error=>{
+                    this.setState(byPropKey('error',error))
+                })
             })
             .catch(error=>{
                 this.setState(byPropKey('error',error))
