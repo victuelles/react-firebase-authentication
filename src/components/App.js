@@ -9,12 +9,14 @@ import HomePage from './Home'
 import AccountPage from './Account'
 import * as routes from '../constants/routes'
 import withAuthentication from './withAuthentication'
-
+import './App.css';
 const App = () => 
   <Router>
     <div>
         <Navigation />
         <hr/>
+        <br/>
+        <br/>
         <Route 
           exact path={routes.LANDING} component={()=><LandingPage/>} 
         />
