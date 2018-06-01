@@ -5,7 +5,7 @@ import * as routes from '../constants/routes'
 
 const PasswordForgetPage = () => 
     <div>
-        <h1>Password Forget</h1>
+       
         <PasswordForgetForm />
     </div>
  
@@ -43,20 +43,46 @@ class PasswordForgetForm extends Component {
            
 
         return ( 
+         <div className="container"  style={{marginTop:40+'px'}}>  
+
             <form onSubmit={this.onSubmit}>
-                
-                <input value={email} 
-                        onChange={event=>this.setState(byPropKey('email',event.target.value))}
-                        type='text'
-                        placeholder='Email address'
-                 />
+                <div className="row">
+                    <div className="col-md-3"></div>
+                    <div className="col-md-6">
+                        <h2>Forgot Password</h2>
+                        <hr/>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-3"></div>
+                    <div className="col-md-6">
+                        <div className="form-group has-danger">
+                            <label className="sr-only" for="email">E-Mail Address</label>
+                            <div className="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <div className="input-group-addon" style={{width: 2.6+'rem'}}><i className="fa fa-at"></i></div>
+                                <input value={email} className="form-control" 
+                            onChange={event=>this.setState(byPropKey('email',event.target.value))}
+                            type='email'
+                            placeholder='Email address'
+                            />                       
+                        </div>
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <div className="form-control-feedback">
+                        <button disabled={isInvalid} className="btn btn-primary" type ='submit'>
+                           Reset my Password
+                         </button>
+                        </div>
+                    </div>
+                </div>
+
               
-                <button disabled={isInvalid} type ='submit'>
-                     Reset my Password
-                </button>
+
 
                 {error && <p>{error.message}</p>}
             </form>
+          </div>
          )
     }
 }

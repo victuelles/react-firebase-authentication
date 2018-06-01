@@ -7,10 +7,9 @@ import {PasswordForget, PasswordForgetLink} from './PasswordForget'
 
 const SignInPage = ({history}) => 
 <div>
-    <h1>Sign In</h1>
+   
     <SignInForm history={history}/>
-    <PasswordForgetLink/>
-    <SignUpLink />
+
 </div>
 
 const byPropKey =(propertyName,value)=>()=>({
@@ -53,25 +52,83 @@ class SignInForm extends Component {
            
 
         return ( 
+            <div className="container"  style={{marginTop:40+'px'}}>  
             <form onSubmit={this.onSubmit}>
-                
-                <input value={email} 
-                        onChange={event=>this.setState(byPropKey('email',event.target.value))}
-                        type='text'
-                        placeholder='Email address'
-                 />
-                 <input value={password} 
+                <div className="row">
+                    <div className="col-md-3"></div>
+                    <div className="col-md-6">
+                        <h2>Please Login</h2>
+                        <hr/>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-3"></div>
+                    <div className="col-md-6">
+                        <div className="form-group has-danger">
+                            <label className="sr-only" for="email">E-Mail Address</label>
+                            <div className="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <div className="input-group-addon" style={{width: 2.6+'rem'}}><i className="fa fa-at"></i></div>
+                                <input value={email} className="form-control" 
+                            onChange={event=>this.setState(byPropKey('email',event.target.value))}
+                            type='email'
+                            placeholder='Email address'
+                            />                       
+                        </div>
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <div className="form-control-feedback">
+                            <span className="text-danger align-middle">
+                             {error && <p>{error.message}</p>}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div className="row">
+                <div className="col-md-3"></div>
+                <div className="col-md-6">
+                    <div className="form-group">
+                        <label className="sr-only" for="password">Password</label>
+                        <div className="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div className="input-group-addon" style={{width: '2.6rem'}}><i className="fa fa-key"></i></div>
+                            <input value={password} className="form-control" 
                         onChange={event=>this.setState(byPropKey('password',event.target.value))}
-                        type='text'
+                        type='password' 
                         placeholder='Password'
-                 />
-              
-                <button disabled={isInvalid} type ='submit'>
-                     Sign In
-                </button>
-
-                {error && <p>{error.message}</p>}
-            </form>
+                     />
+                      </div>
+                    </div>
+                </div>
+                <div className="col-md-3">
+                    <div className="form-control-feedback">
+                        <span className="text-danger align-middle">
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-md-3"></div>
+                <div className="col-md-6" style={{paddingTop: '.35rem'}}>
+                    <div className="form-check mb-2 mr-sm-2 mb-sm-0">
+                        <label className="form-check-label">
+                            <input className="form-check-input" name="remember"
+                                   type="checkbox" />
+                            <span style={{paddingBottom:'.15rem'}}>Remember me</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div className="row" style={{paddingTop: '1rem'}}>
+                <div className="col-md-3"></div>
+                <div className="col-md-6">
+                    <button disabled={isInvalid} type="submit" className="btn btn-success"><i className="fa fa-sign-in"></i> Login</button>
+                    <PasswordForgetLink/>
+                    <SignUpLink />
+                </div>
+            </div>
+      
+         </form>
+     </div>
          )
     }
 }
